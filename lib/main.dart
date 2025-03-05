@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'cards_screen.dart';
 import 'helper.dart';
 
 DatabaseHelper myHelper = DatabaseHelper();
@@ -15,15 +16,39 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'ACTIVITY 09'),
+      title: 'Card Organizer App',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const MyHomePage(title: 'Activity 08'),
     );
   }
 }
+
+// Data model for a Folder.
+class Folder {
+  final String name;
+  final String previewImageUrl;
+  final int cardCount;
+
+  Folder({
+    required this.name,
+    required this.previewImageUrl,
+    required this.cardCount,
+  });
+}
+/*class FoldersScreen extends StatelessWidget {
+  final List<Folder> folders = [
+    Folder(name: 'Hearts', previewImageUrl: 'https://example.com/heart.jpg', cardCount: 4),
+    Folder(name: 'Spades', previewImageUrl: 'https://example.com/spade.jpg', cardCount: 5),
+    Folder(name: 'Diamonds', previewImageUrl: 'https://example.com/diamond.jpg', cardCount: 3),
+    Folder(name: 'Clubs', previewImageUrl: 'https://example.com/club.jpg', cardCount: 6),
+  ];
+  
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+}*/
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -31,10 +56,17 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _FoldersScreen();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _FoldersScreen extends State<MyHomePage> {
+  final List<Folder> folders = [
+    Folder(name: 'Hearts', previewImageUrl: 'https://example.com/heart.jpg', cardCount: 4),
+    Folder(name: 'Spades', previewImageUrl: 'https://example.com/spade.jpg', cardCount: 5),
+    Folder(name: 'Diamonds', previewImageUrl: 'https://example.com/diamond.jpg', cardCount: 3),
+    Folder(name: 'Clubs', previewImageUrl: 'https://example.com/club.jpg', cardCount: 6),
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -119,32 +151,65 @@ class _MyHomePageState extends State<MyHomePage> {
     return await myHelper.queryAllRows();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text('Card Organizer App'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      body: GridView.builder(
+        padding: const EdgeInsets.all(10),
+        itemCount: folders.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // 2 columns
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          childAspectRatio: 1,
         ),
+        itemBuilder: (context, index) {
+          final folder = folders[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CardsScreen(folder: folder)),
+              );
+            },
+            child: Card(
+              elevation: 3,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.network(
+                    folder.previewImageUrl,
+                    height: 80,
+                    width: 80,
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    folder.name,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Text('Cards: ${folder.cardCount}'),
+                ],
+              ),
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+  
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
   }
 }

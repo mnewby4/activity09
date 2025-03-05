@@ -1,0 +1,2 @@
+C:/Users/Amina Ahmad/Downloads/MADProjects/activity09/android/app/.cxx/Debug/6524543o/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/Amina Ahmad/Downloads/MADProjects/activity09/android/app/.cxx/Debug/6524543o/armeabi-v7a/CMakeFiles/rebuild_cache.dir
