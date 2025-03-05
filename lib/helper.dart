@@ -5,10 +5,18 @@ import 'package:path_provider/path_provider.dart';
 class DatabaseHelper {
   static const _databaseName = "MyDatabase.db";
   static const _databaseVersion = 1;
-  static const table = 'my_table';
-  static const columnId = '_id';
-  static const columnName = 'name';
-  static const columnAge = 'age';
+
+  static const folderTable = 'folder_table';
+  static const columnFolderId = '_id';
+  static const columnFolderName = 'folderName';
+  static const columnTime = 'time';
+
+  static const cardTable = 'card_table';
+  static const columnCardId = '_id';
+  static const columnCardName = 'name';
+  static const columnSuit = 'suit';
+  static const columnImgUrl = 'imgUrl';
+  static const cardFolderID = 'folderid';
   late Database _db;
 // this opens the database (and creates it if it doesn't exist)
   Future<void> init() async {
@@ -24,12 +32,24 @@ class DatabaseHelper {
 // SQL code to create the database table
   Future _onCreate(Database db, int version) async {
     await db.execute('''
-CREATE TABLE $table (
-$columnId INTEGER PRIMARY KEY,
-$columnName TEXT NOT NULL,
-$columnAge INTEGER NOT NULL
-)
-''');
+      CREATE TABLE $folderTable (
+      $columnFolderId INTEGER PRIMARY KEY,
+      $columnFolderName TEXT NOT NULL,
+      $columnTime DATETIME DEFAULT CURRENT_TIMESTAMP
+      );
+
+      CREATE TABLE $cardTable (
+      $cardFolderID INTEGER PRIMARY KEY,
+      $columnCardId INTEGER NOT NULL,
+      $columnCardName TEXT NOT NULL,
+      $columnSuit TEXT NOT NULL,
+      $columnImgUrl TEXT NOT NULL,
+      )
+      ''');
+      await db.insert(folderTable, {columnFolderId: 1, columnFolderName: "Hearts"});
+      await db.insert(folderTable, {columnFolderId: 2, columnFolderName: "Spades"});
+      await db.insert(folderTable, {columnFolderId: 3, columnFolderName: "Diamonds"});
+      await db.insert(folderTable, {columnFolderId: 4, columnFolderName: "Clubs"});
   }
 
 // Helper methods
@@ -39,23 +59,23 @@ $columnAge INTEGER NOT NULL
 //is the id of the
 // inserted row.
   Future<int> insert(Map<String, dynamic> row) async {
-    return await _db.insert(table, row);
+    return await _db.insert(folderTable, row);
   }
 
 // All of the rows are returned as a list of maps, where each map is
 // a key-value list of columns.
   Future<List<Map<String, dynamic>>> queryAllRows() async {
-    return await _db.query(table);
+    return await _db.query(folderTable);
   }
 
 // All of the methods (insert, query, update, delete) can also be done using
 // raw SQL commands. This method uses a raw query to give the row count.
   Future<int> queryRowCount() async {
-    final results = await _db.rawQuery('SELECT COUNT(*) FROM $table');
+    final results = await _db.rawQuery('SELECT COUNT(*) FROM $folderTable');
     return Sqflite.firstIntValue(results) ?? 0;
   }
 
-// We are assuming here that the id column in the map is set. The other
+/*// We are assuming here that the id column in the map is set. The other
 // column values will be used to update the row.
   Future<int> update(Map<String, dynamic> row) async {
     int id = row[columnId];
@@ -75,5 +95,5 @@ $columnAge INTEGER NOT NULL
       where: '$columnId = ?',
       whereArgs: [id],
     );
-  }
+  }*/
 }

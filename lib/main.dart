@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'helper.dart';
 
-void main() {
+DatabaseHelper myHelper = DatabaseHelper();
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized(); 
+  await myHelper.init();
   runApp(const MyApp());
 }
 
@@ -31,12 +35,37 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Map<String, dynamic> Spades = {
+      DatabaseHelper.columnFolderId: 2,
+      DatabaseHelper.columnFolderName: "Spades"
+    };
+    Map<String, dynamic> Diamonds = {
+      DatabaseHelper.columnFolderId: 3,
+      DatabaseHelper.columnFolderName: "Diamonds"
+    };
+    Map<String, dynamic> Clubs = {
+      DatabaseHelper.columnFolderId: 4,
+      DatabaseHelper.columnFolderName: "Clubs"
+    };
+    myHelper.insert(Spades);
+    myHelper.insert(Diamonds);
+    myHelper.insert(Clubs);
+  }
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter() async {
     setState(() {
       _counter++;
     });
+    print(await _display());
+    print(await myHelper.queryRowCount());
+  }
+
+  Future<List<Map<String, dynamic>>> _display() async {
+    return await myHelper.queryAllRows();
   }
 
   @override
