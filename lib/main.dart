@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:activity09/cards_screen.dart'; // Make sure to import your CardsScreen file if it's in a separate file
+import 'cards_screen.dart';
 
-/// Data model for a Folder.
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Card Organizer App',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: FoldersScreen(),
+    );
+  }
+}
+
+// Data model for a Folder.
 class Folder {
   final String name;
   final String previewImageUrl;
@@ -15,24 +30,11 @@ class Folder {
 }
 
 class FoldersScreen extends StatelessWidget {
-  // Sample data for demonstration.
   final List<Folder> folders = [
-    Folder(
-        name: 'Hearts',
-        previewImageUrl: 'https://example.com/heart.jpg',
-        cardCount: 4),
-    Folder(
-        name: 'Spades',
-        previewImageUrl: 'https://example.com/spade.jpg',
-        cardCount: 5),
-    Folder(
-        name: 'Diamonds',
-        previewImageUrl: 'https://example.com/diamond.jpg',
-        cardCount: 3),
-    Folder(
-        name: 'Clubs',
-        previewImageUrl: 'https://example.com/club.jpg',
-        cardCount: 6),
+    Folder(name: 'Hearts', previewImageUrl: 'https://example.com/heart.jpg', cardCount: 4),
+    Folder(name: 'Spades', previewImageUrl: 'https://example.com/spade.jpg', cardCount: 5),
+    Folder(name: 'Diamonds', previewImageUrl: 'https://example.com/diamond.jpg', cardCount: 3),
+    Folder(name: 'Clubs', previewImageUrl: 'https://example.com/club.jpg', cardCount: 6),
   ];
 
   @override
@@ -45,7 +47,7 @@ class FoldersScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         itemCount: folders.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // 2 columns for a grid layout
+          crossAxisCount: 2, // 2 columns
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           childAspectRatio: 1,
@@ -54,11 +56,9 @@ class FoldersScreen extends StatelessWidget {
           final folder = folders[index];
           return GestureDetector(
             onTap: () {
-              // Navigate to the Cards Screen for the selected folder.
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => CardsScreen(folder: folder)),
+                MaterialPageRoute(builder: (context) => CardsScreen(folder: folder)),
               );
             },
             child: Card(
@@ -66,7 +66,6 @@ class FoldersScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Preview image from a URL.
                   Image.network(
                     folder.previewImageUrl,
                     height: 80,
