@@ -34,21 +34,8 @@ class Folder {
     required this.previewImageUrl,
     required this.cardCount,
   });
+
 }
-/*class FoldersScreen extends StatelessWidget {
-  final List<Folder> folders = [
-    Folder(name: 'Hearts', previewImageUrl: 'https://example.com/heart.jpg', cardCount: 4),
-    Folder(name: 'Spades', previewImageUrl: 'https://example.com/spade.jpg', cardCount: 5),
-    Folder(name: 'Diamonds', previewImageUrl: 'https://example.com/diamond.jpg', cardCount: 3),
-    Folder(name: 'Clubs', previewImageUrl: 'https://example.com/club.jpg', cardCount: 6),
-  ];
-  
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
-}*/
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -284,12 +271,8 @@ class _FoldersScreen extends State<MyHomePage> {
     myHelper.insertCard(CCard5);
     myHelper.insertCard(CCard6);
   }
-  int _counter = 0;
 
   void _incrementCounter() async {
-    setState(() {
-      _counter++;
-    });
     print(await _display());
     print(await myHelper.queryRowCount());
     print(await myHelper.queryCardRowCount());

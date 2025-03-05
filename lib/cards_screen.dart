@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'helper.dart';
+DatabaseHelper myHelper = DatabaseHelper();
 
-/// Data model for a CardItem.
 class CardItem {
   final String name;
   final String imageUrl;
@@ -22,15 +23,27 @@ class CardsScreen extends StatefulWidget {
 }
 
 class _CardsScreenState extends State<CardsScreen> {
-  // Example list of cards for demonstration.
-  // In a real app, this data would come from SQLite.
+  List<CardItem> _cards = [];
   List<CardItem> cards = [
-    CardItem(
-        name: 'Ace of Hearts', imageUrl: 'https://example.com/ace_hearts.jpg'),
+    CardItem(name: 'Ace of Hearts', imageUrl: 'https://example.com/ace_hearts.jpg'),
     CardItem(name: '2 of Hearts', imageUrl: 'https://example.com/2_hearts.jpg'),
     CardItem(name: '3 of Hearts', imageUrl: 'https://example.com/3_hearts.jpg'),
     CardItem(name: '4 of Hearts', imageUrl: 'https://example.com/4_hearts.jpg'),
   ];
+  void _setCards() {
+    int _limit = myHelper.queryCardRowCount() as int;
+    int id = 1;
+    print(myHelper.getCardName(id));
+    setState(() {
+      /*for (int id = 1; id <= _limit; id++) {
+        cards.insert(
+          CardItem(
+            name: myHelper.getCardName(id), 
+            imageUrl: DatabaseHelper.cardTable.imageUrl
+          ));
+        }*/
+    });
+  }
 
   // Functions for card CRUD operations can be added here.
   // For example: _addCard(), _updateCard(), _deleteCard().
@@ -97,7 +110,7 @@ class _CardsScreenState extends State<CardsScreen> {
       ),
       // Floating Action Button to add a new card.
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () { _setCards;
           // TODO: Add logic to add a new card.
           // Make sure to enforce folder limits (3-6 cards) here.
         },

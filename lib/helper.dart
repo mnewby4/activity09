@@ -82,6 +82,19 @@ class DatabaseHelper {
     return Sqflite.firstIntValue(results) ?? 0;
   }
 
+  /*Future<String>*/ getCardName(int id) async {
+    print(await _db.rawQuery('SELECT $columnCardId FROM $cardTable'));
+    //return name;
+  }
+
+  Future<List<Map<String, dynamic>>> queryCardsByFolderId(int folderId) async {
+    return await _db.query(
+      cardTable,
+      where: '$cardFolderID = ?',
+      whereArgs: [folderId],
+    );
+  }
+
 /*// We are assuming here that the id column in the map is set. The other
 // column values will be used to update the row.
   Future<int> update(Map<String, dynamic> row) async {
