@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Card Organizer App',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const MyHomePage(title: 'Activity 08'),
+      home: const MyHomePage(title: 'Activity 09'),
     );
   }
 }
@@ -135,6 +135,154 @@ class _FoldersScreen extends State<MyHomePage> {
     myHelper.insertCard(HCard4);
     myHelper.insertCard(HCard5);
     myHelper.insertCard(HCard6);
+
+    Map<String, dynamic> SCard1 = {
+      DatabaseHelper.columnCardId: 7,
+      DatabaseHelper.columnCardName: "Ace of Spades", 
+      DatabaseHelper.columnSuit: "Spades",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/English_pattern_ace_of_spades.svg/60px-English_pattern_ace_of_spades.svg.png",
+      DatabaseHelper.cardFolderID: 2,
+    };
+    Map<String, dynamic> SCard2 = {
+      DatabaseHelper.columnCardId: 8,
+      DatabaseHelper.columnCardName: "2 Spades", 
+      DatabaseHelper.columnSuit: "Spades",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/English_pattern_2_of_spades.svg/60px-English_pattern_2_of_spades.svg.png",
+      DatabaseHelper.cardFolderID: 2,
+    };
+    Map<String, dynamic> SCard3 = {
+      DatabaseHelper.columnCardId: 9,
+      DatabaseHelper.columnCardName: "3 Spades", 
+      DatabaseHelper.columnSuit: "Spades",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/English_pattern_3_of_spades.svg/60px-English_pattern_3_of_spades.svg.png",
+      DatabaseHelper.cardFolderID: 2,
+    };
+    Map<String, dynamic> SCard4 = {
+      DatabaseHelper.columnCardId: 10,
+      DatabaseHelper.columnCardName: "4 Spades", 
+      DatabaseHelper.columnSuit: "Spades",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/English_pattern_4_of_spades.svg/60px-English_pattern_4_of_spades.svg.png",
+      DatabaseHelper.cardFolderID: 2,
+    };
+    Map<String, dynamic> SCard5 = {
+      DatabaseHelper.columnCardId: 11,
+      DatabaseHelper.columnCardName: "5 Spades", 
+      DatabaseHelper.columnSuit: "Spades",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/English_pattern_5_of_spades.svg/60px-English_pattern_5_of_spades.svg.png",
+      DatabaseHelper.cardFolderID: 2,
+    };
+    Map<String, dynamic> SCard6 = {
+      DatabaseHelper.columnCardId: 12,
+      DatabaseHelper.columnCardName: "6 Spades", 
+      DatabaseHelper.columnSuit: "Spades",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/English_pattern_6_of_spades.svg/60px-English_pattern_6_of_spades.svg.png",
+      DatabaseHelper.cardFolderID: 2,
+    };
+
+    myHelper.insertCard(SCard1);
+    myHelper.insertCard(SCard2);
+    myHelper.insertCard(SCard3);
+    myHelper.insertCard(SCard4);
+    myHelper.insertCard(SCard5);
+    myHelper.insertCard(SCard6);
+
+    Map<String, dynamic> DCard1 = {
+      DatabaseHelper.columnCardId: 13,
+      DatabaseHelper.columnCardName: "Ace of Diamonds", 
+      DatabaseHelper.columnSuit: "Diamonds",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/English_pattern_ace_of_diamonds.svg/60px-English_pattern_ace_of_diamonds.svg.png",
+      DatabaseHelper.cardFolderID: 3,
+    };
+    Map<String, dynamic> DCard2 = {
+      DatabaseHelper.columnCardId: 14,
+      DatabaseHelper.columnCardName: "2 Diamonds", 
+      DatabaseHelper.columnSuit: "Diamonds",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/English_pattern_2_of_diamonds.svg/60px-English_pattern_2_of_diamonds.svg.png",
+      DatabaseHelper.cardFolderID: 3,
+    };
+    Map<String, dynamic> DCard3 = {
+      DatabaseHelper.columnCardId: 15,
+      DatabaseHelper.columnCardName: "3 Diamonds", 
+      DatabaseHelper.columnSuit: "Diamonds",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/English_pattern_3_of_diamonds.svg/60px-English_pattern_3_of_diamonds.svg.png",
+      DatabaseHelper.cardFolderID: 3,
+    };
+    Map<String, dynamic> DCard4 = {
+      DatabaseHelper.columnCardId: 16,
+      DatabaseHelper.columnCardName: "4 Diamonds", 
+      DatabaseHelper.columnSuit: "Diamonds",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/English_pattern_4_of_diamonds.svg/60px-English_pattern_4_of_diamonds.svg.png",
+      DatabaseHelper.cardFolderID: 3,
+    };
+    Map<String, dynamic> DCard5 = {
+      DatabaseHelper.columnCardId: 17,
+      DatabaseHelper.columnCardName: "5 Diamonds", 
+      DatabaseHelper.columnSuit: "Diamonds",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/English_pattern_5_of_diamonds.svg/60px-English_pattern_5_of_diamonds.svg.png",
+      DatabaseHelper.cardFolderID: 3,
+    };
+    Map<String, dynamic> DCard6 = {
+      DatabaseHelper.columnCardId: 18,
+      DatabaseHelper.columnCardName: "6 Diamonds", 
+      DatabaseHelper.columnSuit: "Diamonds",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/English_pattern_6_of_diamonds.svg/60px-English_pattern_6_of_diamonds.svg.png",
+      DatabaseHelper.cardFolderID: 3,
+    };
+    myHelper.insertCard(DCard1);
+    myHelper.insertCard(DCard2);
+    myHelper.insertCard(DCard3);
+    myHelper.insertCard(DCard4);
+    myHelper.insertCard(DCard5);
+    myHelper.insertCard(DCard6);
+
+    Map<String, dynamic> CCard1 = {
+      DatabaseHelper.columnCardId: 19,
+      DatabaseHelper.columnCardName: "Ace of Clubs", 
+      DatabaseHelper.columnSuit: "Clubs",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/English_pattern_ace_of_clubs.svg/60px-English_pattern_ace_of_clubs.svg.png",
+      DatabaseHelper.cardFolderID: 4,
+    };
+    Map<String, dynamic> CCard2 = {
+      DatabaseHelper.columnCardId: 20,
+      DatabaseHelper.columnCardName: "2 Clubs", 
+      DatabaseHelper.columnSuit: "Clubs",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/English_pattern_2_of_clubs.svg/60px-English_pattern_2_of_clubs.svg.png",
+      DatabaseHelper.cardFolderID: 4,
+    };
+    Map<String, dynamic> CCard3 = {
+      DatabaseHelper.columnCardId: 21,
+      DatabaseHelper.columnCardName: "3 Clubs", 
+      DatabaseHelper.columnSuit: "Clubs",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/English_pattern_3_of_clubs.svg/60px-English_pattern_3_of_clubs.svg.png",
+      DatabaseHelper.cardFolderID: 4,
+    };
+    Map<String, dynamic> CCard4 = {
+      DatabaseHelper.columnCardId: 22,
+      DatabaseHelper.columnCardName: "4 Clubs", 
+      DatabaseHelper.columnSuit: "Clubs",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/English_pattern_4_of_clubs.svg/60px-English_pattern_4_of_clubs.svg.png",
+      DatabaseHelper.cardFolderID: 4,
+    };
+    Map<String, dynamic> CCard5 = {
+      DatabaseHelper.columnCardId: 23,
+      DatabaseHelper.columnCardName: "5 Clubs", 
+      DatabaseHelper.columnSuit: "Clubs",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/English_pattern_5_of_clubs.svg/60px-English_pattern_5_of_clubs.svg.png",
+      DatabaseHelper.cardFolderID: 4,
+    };
+    Map<String, dynamic> CCard6 = {
+      DatabaseHelper.columnCardId: 24,
+      DatabaseHelper.columnCardName: "6 Clubs", 
+      DatabaseHelper.columnSuit: "Clubs",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/English_pattern_6_of_clubs.svg/60px-English_pattern_6_of_clubs.svg.png",
+      DatabaseHelper.cardFolderID: 4,
+    };
+    myHelper.insertCard(CCard1);
+    myHelper.insertCard(CCard2);
+    myHelper.insertCard(CCard3);
+    myHelper.insertCard(CCard4);
+    myHelper.insertCard(CCard5);
+    myHelper.insertCard(CCard6);
   }
   int _counter = 0;
 
