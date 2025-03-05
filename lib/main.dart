@@ -53,6 +53,56 @@ class _MyHomePageState extends State<MyHomePage> {
     myHelper.insert(Spades);
     myHelper.insert(Diamonds);
     myHelper.insert(Clubs);
+
+    Map<String, dynamic> HCard1 = {
+      DatabaseHelper.columnCardId: 1,
+      DatabaseHelper.columnCardName: "Ace of Hearts", 
+      DatabaseHelper.columnSuit: "Hearts",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/English_pattern_ace_of_hearts.svg/60px-English_pattern_ace_of_hearts.svg.png",
+      DatabaseHelper.cardFolderID: 1,
+    };
+    Map<String, dynamic> HCard2 = {
+      DatabaseHelper.columnCardId: 2,
+      DatabaseHelper.columnCardName: "2 Hearts", 
+      DatabaseHelper.columnSuit: "Hearts",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/English_pattern_2_of_hearts.svg/60px-English_pattern_2_of_hearts.svg.png",
+      DatabaseHelper.cardFolderID: 1,
+    };
+    Map<String, dynamic> HCard3 = {
+      DatabaseHelper.columnCardId: 3,
+      DatabaseHelper.columnCardName: "3 Hearts", 
+      DatabaseHelper.columnSuit: "Hearts",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/English_pattern_3_of_hearts.svg/60px-English_pattern_3_of_hearts.svg.png",
+      DatabaseHelper.cardFolderID: 1,
+    };
+    Map<String, dynamic> HCard4 = {
+      DatabaseHelper.columnCardId: 4,
+      DatabaseHelper.columnCardName: "4 Hearts", 
+      DatabaseHelper.columnSuit: "Hearts",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/English_pattern_4_of_hearts.svg/60px-English_pattern_4_of_hearts.svg.png",
+      DatabaseHelper.cardFolderID: 1,
+    };
+    Map<String, dynamic> HCard5 = {
+      DatabaseHelper.columnCardId: 5,
+      DatabaseHelper.columnCardName: "5 Hearts", 
+      DatabaseHelper.columnSuit: "Hearts",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/English_pattern_5_of_hearts.svg/60px-English_pattern_5_of_hearts.svg.png",
+      DatabaseHelper.cardFolderID: 1,
+    };
+    Map<String, dynamic> HCard6 = {
+      DatabaseHelper.columnCardId: 6,
+      DatabaseHelper.columnCardName: "6 Hearts", 
+      DatabaseHelper.columnSuit: "Hearts",
+      DatabaseHelper.columnImgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/English_pattern_6_of_hearts.svg/60px-English_pattern_6_of_hearts.svg.png",
+      DatabaseHelper.cardFolderID: 1,
+    };
+
+    myHelper.insertCard(HCard1);
+    myHelper.insertCard(HCard2);
+    myHelper.insertCard(HCard3);
+    myHelper.insertCard(HCard4);
+    myHelper.insertCard(HCard5);
+    myHelper.insertCard(HCard6);
   }
   int _counter = 0;
 
@@ -62,6 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
     print(await _display());
     print(await myHelper.queryRowCount());
+    print(await myHelper.queryCardRowCount());
   }
 
   Future<List<Map<String, dynamic>>> _display() async {

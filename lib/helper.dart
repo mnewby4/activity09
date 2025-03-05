@@ -4,7 +4,7 @@ import 'package:path_provider/path_provider.dart';
 
 class DatabaseHelper {
   static const _databaseName = "MyDatabase.db";
-  static const _databaseVersion = 1;
+  static const _databaseVersion = 2;
 
   static const folderTable = 'folder_table';
   static const columnFolderId = '_id';
@@ -12,7 +12,7 @@ class DatabaseHelper {
   static const columnTime = 'time';
 
   static const cardTable = 'card_table';
-  static const columnCardId = '_id';
+  static const columnCardId = '_cardId';
   static const columnCardName = 'name';
   static const columnSuit = 'suit';
   static const columnImgUrl = 'imgUrl';
@@ -37,19 +37,18 @@ class DatabaseHelper {
       $columnFolderName TEXT NOT NULL,
       $columnTime DATETIME DEFAULT CURRENT_TIMESTAMP
       );
-
+    ''');
+    await db.execute(''' 
       CREATE TABLE $cardTable (
-      $cardFolderID INTEGER PRIMARY KEY,
-      $columnCardId INTEGER NOT NULL,
+      $columnCardId INTEGER PRIMARY KEY,
       $columnCardName TEXT NOT NULL,
       $columnSuit TEXT NOT NULL,
       $columnImgUrl TEXT NOT NULL,
-      )
-      ''');
+      $cardFolderID INTEGER NOT NULL,
+      FOREIGN KEY ($cardFolderID) REFERENCES $folderTable ($columnFolderId) ON DELETE CASCADE
+      );
+    ''');
       await db.insert(folderTable, {columnFolderId: 1, columnFolderName: "Hearts"});
-      await db.insert(folderTable, {columnFolderId: 2, columnFolderName: "Spades"});
-      await db.insert(folderTable, {columnFolderId: 3, columnFolderName: "Diamonds"});
-      await db.insert(folderTable, {columnFolderId: 4, columnFolderName: "Clubs"});
   }
 
 // Helper methods
@@ -60,6 +59,9 @@ class DatabaseHelper {
 // inserted row.
   Future<int> insert(Map<String, dynamic> row) async {
     return await _db.insert(folderTable, row);
+  }
+  Future<int> insertCard(Map<String, dynamic> row) async {
+    return await _db.insert(cardTable, row);
   }
 
 // All of the rows are returned as a list of maps, where each map is
@@ -72,6 +74,11 @@ class DatabaseHelper {
 // raw SQL commands. This method uses a raw query to give the row count.
   Future<int> queryRowCount() async {
     final results = await _db.rawQuery('SELECT COUNT(*) FROM $folderTable');
+    return Sqflite.firstIntValue(results) ?? 0;
+  }
+
+  Future<int> queryCardRowCount() async {
+    final results = await _db.rawQuery('SELECT COUNT(*) FROM $cardTable');
     return Sqflite.firstIntValue(results) ?? 0;
   }
 
